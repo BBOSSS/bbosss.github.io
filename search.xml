@@ -2,19 +2,13 @@
 <search>
   <entry>
     <title><![CDATA[Hello Markdown]]></title>
-    <url>%2F2018%2F08%2F25%2FMarkdwon%20Test%2F</url>
-    <content type="text"><![CDATA[Markdwon Testtest cpp123456#include&lt;iostream&gt;using namespace std;int main() &#123; cout &lt;&lt; "Hello Markdown!" &lt;&lt; endl; return 0;&#125; test c12345#include&lt;stdio.h&gt;int main() &#123; printf("Hello Markdown!\n"); return 0;&#125;]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[测试博客]]></title>
-    <url>%2F2018%2F08%2F25%2F%E6%B5%8B%E8%AF%95%E5%8D%9A%E5%AE%A2%2F</url>
-    <content type="text"><![CDATA[这是一篇测试博客，熟悉Hexo的基本功能。]]></content>
+    <url>%2F2018%2F08%2F25%2FMarkdwonTest%2F</url>
+    <content type="text"><![CDATA[Markdwon Testtest cpp123456#include&lt;iostream&gt;using namespace std;int main() &#123; cout &lt;&lt; "Hello Markdown!" &lt;&lt; endl; return 0;&#125; g++ test.cpp -o test test c12345#include&lt;stdio.h&gt;int main() &#123; printf("Hello Markdown!\n"); return 0;&#125; gcc test.c -o test]]></content>
       <categories>
         <category>Test</category>
       </categories>
       <tags>
-        <tag>Testing</tag>
-        <tag>Another Tag</tag>
+        <tag>Test</tag>
       </tags>
   </entry>
   <entry>
