@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
+    <title><![CDATA[Hello Markdown]]></title>
     <url>%2F2018%2F08%2F25%2FMarkdwon%20Test%2F</url>
-    <content type="text"><![CDATA[#Markdwon Test ###test cpp123456#include&lt;iostream&gt;using namespace std;int main() &#123; cout &lt;&lt; "Hello Markdown!" &lt;&lt; endl; return 0;&#125; ###test c12345#include&lt;stdio.h&gt;int main() &#123; printf("Hello Markdown!\n"); return 0;&#125;]]></content>
+    <content type="text"><![CDATA[Markdwon Testtest cpp123456#include&lt;iostream&gt;using namespace std;int main() &#123; cout &lt;&lt; "Hello Markdown!" &lt;&lt; endl; return 0;&#125; test c12345#include&lt;stdio.h&gt;int main() &#123; printf("Hello Markdown!\n"); return 0;&#125;]]></content>
   </entry>
   <entry>
     <title><![CDATA[测试博客]]></title>
