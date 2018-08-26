@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="-谢锐彬">
 <meta property="og:description" content="new 与 malloc 的区别前两篇博客分析了 malloc 和 new 的原理，这里再简单说明一下区别。  malloc 需要使用参数具体指出申请的内存大小，以字节为单位。而 new 不用指出大小，只需指明类型。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-26T12:34:36.562Z">
+<meta property="og:updated_time" content="2018-08-26T13:57:09.906Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="new 与 malloc 的区别">
 <meta name="twitter:description" content="new 与 malloc 的区别前两篇博客分析了 malloc 和 new 的原理，这里再简单说明一下区别。  malloc 需要使用参数具体指出申请的内存大小，以字节为单位。而 new 不用指出大小，只需指明类型。">
@@ -386,7 +386,7 @@
 <li>malloc 需要使用参数具体指出申请的内存大小，以字节为单位。而 new 不用指出大小，只需指明类型。<a id="more"></a></li>
 <li>malloc 申请成功返回一个void* 指针，需要我们手动进行转换。而 new 返回的是具体类型的指针。</li>
 <li>malloc 申请失败返回NULL。而 new 申请失败直接抛出异常。</li>
-<li>new 一个类或者结构体的时候需要调用构造函数， 这说明 new 可以再申请的时候直接初始化。</li>
+<li>new 一个类或者结构体的时候需要调用构造函数， 这说明 new 可以在申请的时候直接初始化。</li>
 <li>malloc 申请数组的时候需要先计算内存的大小。而 new 只需指明元素个数。</li>
 </ul>
 <h3 id="free-与-delete"><a href="#free-与-delete" class="headerlink" title="free 与 delete"></a>free 与 delete</h3><ul>
@@ -445,6 +445,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/26/大小端判断方法/" rel="prev" title="大小端判断方法">
+                大小端判断方法 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -525,7 +529,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -536,7 +540,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -547,7 +551,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

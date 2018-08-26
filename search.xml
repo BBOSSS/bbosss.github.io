@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[大小端判断方法]]></title>
+    <url>%2F2018%2F08%2F26%2F%E5%A4%A7%E5%B0%8F%E7%AB%AF%E5%88%A4%E6%96%AD%E6%96%B9%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[大小端判断方法 小端字节序高序字节在高地址位，低序字节在低地址位 大端字节序低序字节在高地址位，高序字节在低地址位 利用利用共用体几个不同的变量共同占用一段内存的性质输出第一个字节 12345678910int check()&#123; union UN &#123; char c; int i; &#125;un; un.i = 1; // 置低位为 1 return un.c; // 若为 1 则是小端&#125; 利用指针类型强制转换 123456int check()&#123; int i = 1; i = *(char*)&amp;i; // 取 i 的地址 强制类型转换后解引用 return i; // 若为 1 则是小端&#125;]]></content>
+      <categories>
+        <category>OS</category>
+      </categories>
+      <tags>
+        <tag>OS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[new 与 malloc 的区别]]></title>
     <url>%2F2018%2F08%2F26%2Fnew%E5%92%8Cmalloc%E7%9A%84%E5%8C%BA%E5%88%AB%2F</url>
-    <content type="text"><![CDATA[new 与 malloc 的区别前两篇博客分析了 malloc 和 new 的原理，这里再简单说明一下区别。 malloc 需要使用参数具体指出申请的内存大小，以字节为单位。而 new 不用指出大小，只需指明类型。 malloc 申请成功返回一个void* 指针，需要我们手动进行转换。而 new 返回的是具体类型的指针。 malloc 申请失败返回NULL。而 new 申请失败直接抛出异常。 new 一个类或者结构体的时候需要调用构造函数， 这说明 new 可以再申请的时候直接初始化。 malloc 申请数组的时候需要先计算内存的大小。而 new 只需指明元素个数。 free 与 delete free 只需传入由 malloc 申请的内存地址，free 需要判断 指针是否为NULL。 delete 一个类的时候会调用析构函数，delete 不需要判断指针是否为NULL。 delete 和 free 后都需把指针置为NULL，防止野指针。 不可重复释放内存空间，但可以重复释放NULL，因为释放NULL什么也没发送。]]></content>
+    <content type="text"><![CDATA[new 与 malloc 的区别前两篇博客分析了 malloc 和 new 的原理，这里再简单说明一下区别。 malloc 需要使用参数具体指出申请的内存大小，以字节为单位。而 new 不用指出大小，只需指明类型。 malloc 申请成功返回一个void* 指针，需要我们手动进行转换。而 new 返回的是具体类型的指针。 malloc 申请失败返回NULL。而 new 申请失败直接抛出异常。 new 一个类或者结构体的时候需要调用构造函数， 这说明 new 可以在申请的时候直接初始化。 malloc 申请数组的时候需要先计算内存的大小。而 new 只需指明元素个数。 free 与 delete free 只需传入由 malloc 申请的内存地址，free 需要判断 指针是否为NULL。 delete 一个类的时候会调用析构函数，delete 不需要判断指针是否为NULL。 delete 和 free 后都需把指针置为NULL，防止野指针。 不可重复释放内存空间，但可以重复释放NULL，因为释放NULL什么也没发送。]]></content>
       <categories>
         <category>C/C++</category>
       </categories>
