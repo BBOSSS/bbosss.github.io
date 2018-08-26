@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="new 与 malloc 的区别前两篇博客分析了 malloc 和 new 的原理，这里再简单说明一下区别  malloc 需要使用参数具体指出申请的内存大小，以字节为单位。而 new 不用指出大小，只需指明类型。">
+<meta name="description" content="new 与 malloc 的区别前两篇博客分析了 malloc 和 new 的原理，这里再简单说明一下区别。  malloc 需要使用参数具体指出申请的内存大小，以字节为单位。而 new 不用指出大小，只需指明类型。">
 <meta name="keywords" content="C&#x2F;C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="new 与 malloc 的区别">
 <meta property="og:url" content="https://github.com/BBOSSS/bbosss.github.io.git/2018/08/26/new和malloc的区别/index.html">
 <meta property="og:site_name" content="-谢锐彬">
-<meta property="og:description" content="new 与 malloc 的区别前两篇博客分析了 malloc 和 new 的原理，这里再简单说明一下区别  malloc 需要使用参数具体指出申请的内存大小，以字节为单位。而 new 不用指出大小，只需指明类型。">
+<meta property="og:description" content="new 与 malloc 的区别前两篇博客分析了 malloc 和 new 的原理，这里再简单说明一下区别。  malloc 需要使用参数具体指出申请的内存大小，以字节为单位。而 new 不用指出大小，只需指明类型。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-26T12:21:16.454Z">
+<meta property="og:updated_time" content="2018-08-26T12:34:36.562Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="new 与 malloc 的区别">
-<meta name="twitter:description" content="new 与 malloc 的区别前两篇博客分析了 malloc 和 new 的原理，这里再简单说明一下区别  malloc 需要使用参数具体指出申请的内存大小，以字节为单位。而 new 不用指出大小，只需指明类型。">
+<meta name="twitter:description" content="new 与 malloc 的区别前两篇博客分析了 malloc 和 new 的原理，这里再简单说明一下区别。  malloc 需要使用参数具体指出申请的内存大小，以字节为单位。而 new 不用指出大小，只需指明类型。">
 
 
 
@@ -381,16 +381,16 @@
       
 
       
-        <h3 id="new-与-malloc-的区别"><a href="#new-与-malloc-的区别" class="headerlink" title="new 与 malloc 的区别"></a>new 与 malloc 的区别</h3><p><strong>前两篇博客分析了 malloc 和 new 的原理，这里再简单说明一下区别</strong></p>
+        <h3 id="new-与-malloc-的区别"><a href="#new-与-malloc-的区别" class="headerlink" title="new 与 malloc 的区别"></a>new 与 malloc 的区别</h3><p><strong>前两篇博客分析了 malloc 和 new 的原理，这里再简单说明一下区别。</strong></p>
 <ul>
 <li>malloc 需要使用参数具体指出申请的内存大小，以字节为单位。而 new 不用指出大小，只需指明类型。<a id="more"></a></li>
 <li>malloc 申请成功返回一个void* 指针，需要我们手动进行转换。而 new 返回的是具体类型的指针。</li>
-<li>malloc申请失败返回NULL。而 new 申请失败直接抛出异常。</li>
+<li>malloc 申请失败返回NULL。而 new 申请失败直接抛出异常。</li>
 <li>new 一个类或者结构体的时候需要调用构造函数， 这说明 new 可以再申请的时候直接初始化。</li>
 <li>malloc 申请数组的时候需要先计算内存的大小。而 new 只需指明元素个数。</li>
 </ul>
 <h3 id="free-与-delete"><a href="#free-与-delete" class="headerlink" title="free 与 delete"></a>free 与 delete</h3><ul>
-<li>free 只需传入 malloc 申请的内存地址，free 需要判断 指针是否为NULL。</li>
+<li>free 只需传入由 malloc 申请的内存地址，free 需要判断 指针是否为NULL。</li>
 <li>delete 一个类的时候会调用析构函数，delete 不需要判断指针是否为NULL。</li>
 <li>delete 和 free 后都需把指针置为NULL，防止野指针。</li>
 <li>不可重复释放内存空间，但可以重复释放NULL，因为释放NULL什么也没发送。</li>
@@ -536,7 +536,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

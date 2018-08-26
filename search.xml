@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[new 与 malloc 的区别]]></title>
     <url>%2F2018%2F08%2F26%2Fnew%E5%92%8Cmalloc%E7%9A%84%E5%8C%BA%E5%88%AB%2F</url>
-    <content type="text"><![CDATA[new 与 malloc 的区别前两篇博客分析了 malloc 和 new 的原理，这里再简单说明一下区别 malloc 需要使用参数具体指出申请的内存大小，以字节为单位。而 new 不用指出大小，只需指明类型。 malloc 申请成功返回一个void* 指针，需要我们手动进行转换。而 new 返回的是具体类型的指针。 malloc申请失败返回NULL。而 new 申请失败直接抛出异常。 new 一个类或者结构体的时候需要调用构造函数， 这说明 new 可以再申请的时候直接初始化。 malloc 申请数组的时候需要先计算内存的大小。而 new 只需指明元素个数。 free 与 delete free 只需传入 malloc 申请的内存地址，free 需要判断 指针是否为NULL。 delete 一个类的时候会调用析构函数，delete 不需要判断指针是否为NULL。 delete 和 free 后都需把指针置为NULL，防止野指针。 不可重复释放内存空间，但可以重复释放NULL，因为释放NULL什么也没发送。]]></content>
+    <content type="text"><![CDATA[new 与 malloc 的区别前两篇博客分析了 malloc 和 new 的原理，这里再简单说明一下区别。 malloc 需要使用参数具体指出申请的内存大小，以字节为单位。而 new 不用指出大小，只需指明类型。 malloc 申请成功返回一个void* 指针，需要我们手动进行转换。而 new 返回的是具体类型的指针。 malloc 申请失败返回NULL。而 new 申请失败直接抛出异常。 new 一个类或者结构体的时候需要调用构造函数， 这说明 new 可以再申请的时候直接初始化。 malloc 申请数组的时候需要先计算内存的大小。而 new 只需指明元素个数。 free 与 delete free 只需传入由 malloc 申请的内存地址，free 需要判断 指针是否为NULL。 delete 一个类的时候会调用析构函数，delete 不需要判断指针是否为NULL。 delete 和 free 后都需把指针置为NULL，防止野指针。 不可重复释放内存空间，但可以重复释放NULL，因为释放NULL什么也没发送。]]></content>
       <categories>
         <category>C/C++</category>
       </categories>
@@ -59,8 +59,5 @@
     <title><![CDATA[Hello Markdown]]></title>
     <url>%2F2018%2F08%2F25%2FMarkdwonTest%2F</url>
     <content type="text"><![CDATA[Markdown Test在Hexo写博客用的是Markdown标记语言，这篇博客用于熟悉Markdown的一些常规标记语法，包括标记标题、粗体、代码段、分节等基本语法。 test cpp123456#include&lt;iostream&gt;using namespace std;int main() &#123; cout &lt;&lt; "Hello Markdown!" &lt;&lt; endl; return 0;&#125; g++ test.cpp -o test test c12345#include&lt;stdio.h&gt;int main() &#123; printf("Hello Markdown!\n"); return 0;&#125; gcc test.c -o test]]></content>
-      <categories>
-        <category>Test</category>
-      </categories>
   </entry>
 </search>
