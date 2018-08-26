@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[大小端判断方法]]></title>
     <url>%2F2018%2F08%2F26%2F%E5%A4%A7%E5%B0%8F%E7%AB%AF%E5%88%A4%E6%96%AD%E6%96%B9%E6%B3%95%2F</url>
-    <content type="text"><![CDATA[大小端判断方法 小端字节序高序字节在高地址位，低序字节在低地址位 大端字节序低序字节在高地址位，高序字节在低地址位 利用利用共用体几个不同的变量共同占用一段内存的性质输出第一个字节 12345678910int check()&#123; union UN &#123; char c; int i; &#125;un; un.i = 1; // 置低位为 1 return un.c; // 若为 1 则是小端&#125; 利用指针类型强制转换 123456int check()&#123; int i = 1; i = *(char*)&amp;i; // 取 i 的地址 强制类型转换后解引用 return i; // 若为 1 则是小端&#125;]]></content>
+    <content type="text"><![CDATA[大小端判断方法 小端字节序高序字节在高地址位，低序字节在低地址位大端字节序低序字节在高地址位，高序字节在低地址位 利用利用共用体几个不同的变量共同占用一段内存的性质输出第一个字节 12345678910int check()&#123; union UN &#123; char c; int i; &#125;un; un.i = 1; // 置低位为 1 return un.c; // 若为 1 则是小端&#125; 利用指针类型强制转换 123456int check()&#123; int i = 1; i = *(char*)&amp;i; // 取 i 的地址 强制类型转换后解引用 return i; // 若为 1 则是小端&#125;]]></content>
       <categories>
         <category>OS</category>
       </categories>
