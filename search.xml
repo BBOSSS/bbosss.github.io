@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[new 与 malloc 的区别]]></title>
+    <url>%2F2018%2F08%2F26%2Fnew%E5%92%8Cmalloc%E7%9A%84%E5%8C%BA%E5%88%AB%2F</url>
+    <content type="text"><![CDATA[new 与 malloc 的区别前两篇博客分析了 malloc 和 new 的原理，这里再简单说明一下区别 malloc 需要使用参数具体指出申请的内存大小，以字节为单位。而 new 不用指出大小，只需指明类型。 malloc 申请成功返回一个void* 指针，需要我们手动进行转换。而 new 返回的是具体类型的指针。 malloc申请失败返回NULL。而 new 申请失败直接抛出异常。 new 一个类或者结构体的时候需要调用构造函数， 这说明 new 可以再申请的时候直接初始化。 malloc 申请数组的时候需要先计算内存的大小。而 new 只需指明元素个数。 free 与 delete free 只需传入 malloc 申请的内存地址，free 需要判断 指针是否为NULL。 delete 一个类的时候会调用析构函数，delete 不需要判断指针是否为NULL。 delete 和 free 后都需把指针置为NULL，防止野指针。 不可重复释放内存空间，但可以重复释放NULL，因为释放NULL什么也没发送。]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C/C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[new & delete 原理]]></title>
+    <url>%2F2018%2F08%2F26%2Fnew-delete%2F</url>
+    <content type="text"><![CDATA[new &amp; delete 原理基本概念和用法malloc 和 free 是 C 的库函数，而 new 和 delete 是 C++ 的运算符，也是 C++ 的关键字。12345678910111213141516#include&lt;iostream&gt;using namespace std;int main() &#123; int *a = new int; // 未初始化值 int *b = new int(5); // 初始化为 5 int *c = new int[100]; // 开辟一个大小为100的整型数组空间 ··· delete a; // delete会自动检测是否为NULL a = NULL; // delete之后不会自动置为NULL delete a; // 注意不能对同个指针多次delete delete b; b = NULL; // delete之后要防止野指针 delete [] c; // 数组delete要加方括号[] c = NULL; return 0;&#125; new 原理：new 是 C++ 使用 operator new 重载的运算符12345678910void *__CRTDECL operator new(size_t size) _THROW1(_STD bad_alloc)&#123; void *p = NULL; while((p = malloc(size)) == 0) if (_callnewh(size) == 0) &#123; _THROW_NCEE(_XSTD bad_alloc, ); &#125; return (p);&#125; operator new 的实现是调用了malloc函数申请内存，而当申请失败也就是返回空指针时，判断 _callnewh(size) 返回值是否为0，若为0则抛出一个异常，非0则继续循环执行malloc。_callnewh的作用就是调用一个被称作new_handler的函数，作用类似与回调函数，在VS中我们可以使用_set_new_handler函数来设置自己的回调函数，该函数的参数须为 size_t size。 new 的执行过程1new -&gt; operator new -&gt; malloc new会调用malloc进行内存分配的操作。但他和malloc不用的是，他分配失败时会调用new_handler,而new_handler返回0的情况抛出异常，而malloc只会返回一个空指针。 new T 类型（1）调用operator new(sizeof(T))，该函数的函数原型为void* operator new(size_t size)。（2）调用operator new中的malloc(set_new_handle)，如果申请成功，返回；申请失败（可能原因是内存空间不足），采取应对措施set_new_handler，如果应对措施没有，抛出一个异常。（3）调用一次该类型 T 的构造函数。 new T[N] 类型数组（1）调用operator new[] (N*sizeof(T))，会在申请的空间的头部多给4个字节的空间，用来存放N。（2）调用operator new函数（3）调用malloc函数（4）调用N次构造函数，构造出来N个对象。（5）返回第一个对象所在的首地址，不是原空间的地址，而是原空间的地址向后偏移4个位置 delete 原理：delete 是 C++ 使用 operator delete 重载的运算符12345void operator delete(void* p) &#123; RTCCALLBACK(_RTC_Free_hook, (p, 0)); free(p); &#125; RTCCALLBACK默认是空的宏定义，所以这个函数默认情况下就是简单的调用 free 函数。delete 简单数据类型默认只是调用 free 函数，delete 复杂数据类型先调用析构函数再调用 operator delete。 delete T 类型（1）调用一次该类型 T 的析构函数。（2）调用operator delete，释放空间地址。（3）调用free函数。 delete[] T 类型（1）取出 N（在空间的前四个字节中）。（2）调用 N 次析构函数。（3）调用 operator delete[] (p)。（4）调用 operator delete。（5）调用 free 函数。 new [] 会先计算出申请内存的大小，并把该大小记录在申请到的内存的前 4 个字节delete [] 从该指针指向内存的前 4 个字节取出大小，调用 free]]></content>
+      <categories>
+        <category>C/C++</category>
+      </categories>
+      <tags>
+        <tag>C/C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[malloc & free 原理]]></title>
     <url>%2F2018%2F08%2F26%2Fmalloc-free%2F</url>
     <content type="text"><![CDATA[malloc 和 free 的原理基本概念和用法 函数原型void *malloc(long NumBytes)：该函数分配了NumBytes个字节，并返回了指向这块内存的指针。如果分配失败，则返回一个空指针 NULL。void free(void *FirstByte)： 该函数是将之前用malloc分配的空间还给程序或者是操作系统，也就是释放了这块内存，让它重新得到自由。 使用方法 1234567891011121314151617#include &lt;stdio.h&gt;#include &lt;malloc.h&gt;int main()&#123; char *p; p=(char *)malloc(100); if(p != NULL) // 申请成功 printf("Memory allocated at: %x\n",p); else // 申请失败 printf("Not enough memory\n"); if(p != NULL) &#123; free(p); p = NULL; // 防止野指针 &#125; return 0;&#125; 注意事项①申请了内存空间后，必须检查是否分配成功。②当不需要再使用申请的内存时，记得释放；释放后应该把指向这块内存的指针指向NULL，防止程序后面不小心使用了它。③这两个函数应该是配对。如果申请后不释放就是内存泄露；如果无故释放那就是什么也没有做。释放只能一次，如果释放两次及两次以上会出现错误（释放空指针例外，释放空指针其实也等于啥也没做，所以释放空指针释放多少次都没有问题）④malloc() 返回的是 void* 指针，需要转为特定类型的指针。 malloc 原理操作系统中有一个记录空闲内存地址的链表。当操作系统收到程序的申请时，就会遍历该链表，然后就寻找第一个空间大于所申请空间的堆结点，然后就将该结点从空闲结点链表中删除，并将该结点的空间分配给程序。注意这块内存不是全分配给程序，而是将该内存块一分为二（一块的大小与用户请求的大小相等，另一块的大小就是剩下的字节）。接下来，将分配给用户的那块内存传给用户，并将剩下的那块（如果有的话）返回到连接表上。调用free函数时，它将用户释放的内存块连接到空闲链上。到最后，空闲链会被切成很多的小内存片段，如果这时用户申请一个大的内存片段，那么空闲链上可能没有可以满足用户要求的片段了。于是，malloc函数请求延时，并开始在空闲链上检查各内存片段，对它们进行整理，将相邻的小空闲块合并成较大的内存块。 实际申请空间的大小 = 管理空间 + 用户空间。malloc() 申请的空间实际是分了两个不同性质的空间。一个就是用来记录管理信息的空间，另外一个就是可用空间了。用来记录管理信息的实际上是一个结构体。123456struct mem_control_block &#123; ··· int is_available; // 这是一个标记 int size; // 实际空间的大小 ···&#125;; 1234567891011121314151617void *malloc(long numbytes) &#123; void *current_location; struct mem_control_block *current_location_mcb; void *memory_location; ··· // 实际申请空间的大小 = 管理结构体大小 + 参数的大小 numbytes = numbytes + sizeof(struct mem_control_block); ··· while(current_location != last_valid_address) &#123; ··· // 寻找合适的内存块 ··· &#125; ··· return memory_location;&#125; malloc申请成功返回的是一个指向大小为NumBytes的内存的指针，而这个指针前面还有一个mem_control_block结构体用来记录管理信息，它们的地址是连续的，所以所分配的内存比所要求的要稍大一些，额外的空间用来记录管理信息。 free 原理12345678void free(void *ptr)&#123; struct mem_control_block *free; // 把指向可用空间的指针倒回去，让它指向管理信息 free = ptr - sizeof(struct mem_control_block); free-&gt;is_available = 1; return;&#125; 可看出 free() 只是把指针回退到结构体的基地址，然后把成员变量 is_available 置为1。 这告诉操作系统这块内存可用，操作系统根据 mem_control_block 的管理信息对改内存进行回收管理，它将用户释放的内存块连接到空闲链上，并在需要的时候整合内存碎片。]]></content>
@@ -14,7 +36,7 @@
   <entry>
     <title><![CDATA[C/C++内存的分段和分区]]></title>
     <url>%2F2018%2F08%2F26%2FC%2B%2B%E5%86%85%E5%AD%98%E5%88%86%E5%8C%BA%2F</url>
-    <content type="text"><![CDATA[按段划分 代码段（code segment/text segment）通常是指用来存放程序执行代码的一块内存区域。这部分区域的大小在程序运行前就已经确定，并且内存区域通常属于只读, 某些架构也允许代码段为可写，即允许修改程序。在代码段中，也有可能包含一些只读的常数变量，例如字符串常量等。 数据段（data segment）通常是指用来存放程序中已初始化的全局变量的一块内存区域。数据段属于静态内存分配，有初始化的全局变量和静态变量存放在这里。 BSS段（bss segment）通常是指用来存放程序中未初始化的全局变量的一块内存区域。BSS是英文Block Started by Symbol的简称。BSS段属于静态内存分配，有未的全局变量和静态变量存放在这里。 堆（heap）堆是用于存放进程运行中被动态分配的内存段，它的大小并不固定，可动态扩张或缩减。当进程调用malloc等函数分配内存时，新分配的内存就被动态添加到堆上；当利用free等函数释放内存时，被释放的内存从堆中被剔除 栈(stack)是用户存放程序临时创建的局部变量，也就是说我们函数括弧“{}”中定义的变量（但不包括static声明的变量，static意味着在数据段中存放变量）。除此以外，在函数被调用时，其参数也会被压入发起调用的进程栈中，并且待到调用结束后，函数的返回值也会被存放回栈中。由于栈的先进先出特点，所以栈特别方便用来保存/恢复调用现场。 按区划分 代码区（code)代码区是只读的，该区域是用来存放程序的代码的，内存由系统管理。 常量区（constants）常量在系统一运行被创建，常量区的内存是只读的，如常量字符串就放在这个区。你可以读他们，但是不可以修改他们，内存由系统管理。 全局区（globals）定义在函数外边的全局变量和静态变量就放在这个这里，这里的变量在程序已启动就被创建，你可以自由的更改他们，所以是由系统管理的可读可写的内存。 堆（heap）是一块动态内存，由程序员自己申请自己释放的内存空间，其内存由程序管理，当程序运行时候动态分配给变量，它可以长时间存在，所以，申请一个堆内存就必须有释放的过程，同时指向堆内存的指针不能改变，否则这个堆内存永远都得不到释放，除非程序崩溃或者运行结束导致系统回收程序所在的内存，这样就很容易造成内存泄漏（是指程序运行期间，程序结束后程序所占用的内存就释放了），它是可读可写的。 栈（stack）在需要的时候由系统自动分配，在不需要的时候会由系统自动回收的存储区，内存由系统管理，函数中定义的变量存储在栈中，当调用函数的时候函数中定义的变量会被加到栈中，当函数离开的时候，被添加的变量会从栈中弹出，里面的内容可读可写。]]></content>
+    <content type="text"><![CDATA[按段划分 代码段（code segment/text segment）通常是指用来存放程序执行代码的一块内存区域。这部分区域的大小在程序运行前就已经确定，并且内存区域通常属于只读, 某些架构也允许代码段为可写，即允许修改程序。在代码段中，也有可能包含一些只读的常数变量，例如字符串常量等。 数据段（data segment）通常是指用来存放程序中已初始化的全局变量的一块内存区域。数据段属于静态内存分配，有初始化的全局变量和静态变量存放在这里。 BSS段（bss segment）通常是指用来存放程序中未初始化的全局变量的一块内存区域。BSS是英文Block Started by Symbol的简称。BSS段属于静态内存分配，有未的全局变量和静态变量存放在这里。 堆（heap）堆是用于存放进程运行中被动态分配的内存段，它的大小并不固定，可动态扩张或缩减。当进程调用malloc等函数分配内存时，新分配的内存就被动态添加到堆上；当利用free等函数释放内存时，被释放的内存从堆中被剔除 栈（stack）是用户存放程序临时创建的局部变量，也就是说我们函数括弧“{}”中定义的变量（但不包括static声明的变量，static意味着在数据段中存放变量）。除此以外，在函数被调用时，其参数也会被压入发起调用的进程栈中，并且待到调用结束后，函数的返回值也会被存放回栈中。由于栈的先进先出特点，所以栈特别方便用来保存/恢复调用现场。 按区划分 代码区（code)代码区是只读的，该区域是用来存放程序的代码的，内存由系统管理。 常量区（constants）常量在系统一运行被创建，常量区的内存是只读的，如常量字符串就放在这个区。你可以读他们，但是不可以修改他们，内存由系统管理。 全局区（globals）定义在函数外边的全局变量和静态变量就放在这个这里，这里的变量在程序已启动就被创建，你可以自由的更改他们，所以是由系统管理的可读可写的内存。 堆（heap）是一块动态内存，由程序员自己申请自己释放的内存空间，其内存由程序管理，当程序运行时候动态分配给变量，它可以长时间存在，所以，申请一个堆内存就必须有释放的过程，同时指向堆内存的指针不能改变，否则这个堆内存永远都得不到释放，除非程序崩溃或者运行结束导致系统回收程序所在的内存，这样就很容易造成内存泄漏（是指程序运行期间，程序结束后程序所占用的内存就释放了），它是可读可写的。 栈（stack）在需要的时候由系统自动分配，在不需要的时候会由系统自动回收的存储区，内存由系统管理，函数中定义的变量存储在栈中，当调用函数的时候函数中定义的变量会被加到栈中，当函数离开的时候，被添加的变量会从栈中弹出，里面的内容可读可写。]]></content>
       <categories>
         <category>C/C++</category>
       </categories>
@@ -25,7 +47,7 @@
   <entry>
     <title><![CDATA[vim - 基本使用]]></title>
     <url>%2F2018%2F08%2F25%2Fvim%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%2F</url>
-    <content type="text"><![CDATA[vim 的基本使用vim有三种模式 指令模式（查找和替换） 编辑模式（编辑文本） 常规模式（光标移动、复制、粘贴、删除） 任何模式下使用ESC可返回常规模式 打开文件、新建文件、保存文件12345vi &lt;文件名&gt; 若文件存在则打开文件，不存在则新建并打开输入 ':' 进入指令模式输入 q (quit) 退出文件输入 wq (write quit) 写入修改的内容并退出输入 q! 强制退出不保存修改的内容 进入编辑模式123i(在光标前开始插入文本,一般使用i)a在光标后开始插入文本o(在当前行之下新开一行，并到行首) 光标快速定位12345ngg光标移至第n行的行首（n为数字）1gg就跳到第一行的行首2gg就跳到第二行的行首G转至文件结尾注意：ngg和G是在一般模式 在当前行定位到某个字符12fx搜索当前行中下一个出现字母x的地方注意：fx是在一般模式 文本复制、粘贴、删除、撤销1234567891011yy复制当前行(y:yank(复制))nyy复制当前行及其后的n-1行(n是数字)使用P键来粘贴(p:paste)dd 删除光标所在行(d:delete)ndd 删除当前行及其后的n-1行(n是数字)按u键来撤销上一步操作x删除光标所在位置的字符注意：yy / nyy / dd / ndd / x / u都是在一般模式。 查找内容12345678输入 '/' 进入指令模式输入pattern 从光标开始处向文件尾搜索pattern按下n或N可继续搜索下一个或上一个patternn在同一个方向重复上一次搜索命令N在反方向重复上一次搜索命令n表示next注意：/pattern是从光标处开始搜索的 替换指定内容1234567输入 ':' 进入指令模式输入%s/p1/p2/g将文件中所有的p1均用p2替换输入%s/p1/p2/gc替换时需要确认s: substitute 替换g: global 全局c: confirm 确认]]></content>
+    <content type="text"><![CDATA[vim 的基本使用vim有三种模式 指令模式（查找和替换） 编辑模式（编辑文本） 常规模式（光标移动、复制、粘贴、删除） 任何模式下使用ESC可返回常规模式 打开文件、新建文件、保存文件12345vi &lt;文件名&gt; 若文件存在则打开文件，不存在则新建并打开输入 ':' 进入指令模式输入 q (quit) 退出文件输入 wq (write quit) 写入修改的内容并退出输入 q! 强制退出不保存修改的内容 进入编辑模式123i(在光标前开始插入文本,一般使用i)a在光标后开始插入文本o(在当前行之下新开一行，并到行首) 光标快速定位12345ngg光标移至第n行的行首（n为数字）1gg就跳到第一行的行首2gg就跳到第二行的行首G转至文件结尾注意：ngg和G是在一般模式 在当前行定位到某个字符12fx搜索当前行中下一个出现字母x的地方注意：fx是在一般模式 文本复制、粘贴、删除、撤销12345678910yy复制当前行(y:yank(复制))nyy复制当前行及其后的n-1行(n是数字)使用P键来粘贴(p:paste)dd 删除光标所在行(d:delete)ndd 删除当前行及其后的n-1行(n是数字)按u键来撤销上一步操作x删除光标所在位置的字符注意：yy/nyy/dd/ndd/x/u都是在一般模式。 查找内容1234567输入 '/' 进入指令模式输入pattern 从光标开始处向文件尾搜索pattern按下n或N可继续搜索下一个或上一个patternn在同一个方向重复上一次搜索命令N在反方向重复上一次搜索命令n表示next注意：/pattern是从光标处开始搜索的 替换指定内容1234567输入 ':' 进入指令模式输入%s/p1/p2/g将文件中所有的p1均用p2替换输入%s/p1/p2/gc替换时需要确认s: substitute 替换g: global 全局c: confirm 确认]]></content>
       <categories>
         <category>Linux</category>
       </categories>
@@ -36,7 +58,7 @@
   <entry>
     <title><![CDATA[Hello Markdown]]></title>
     <url>%2F2018%2F08%2F25%2FMarkdwonTest%2F</url>
-    <content type="text"><![CDATA[Markdown Test在Hexo写博客用的是Markdown标记语言，这篇博客用于熟悉Markdown的一些常规标记语法 test cpp123456#include&lt;iostream&gt;using namespace std;int main() &#123; cout &lt;&lt; "Hello Markdown!" &lt;&lt; endl; return 0;&#125; g++ test.cpp -o test test c12345#include&lt;stdio.h&gt;int main() &#123; printf("Hello Markdown!\n"); return 0;&#125; gcc test.c -o test]]></content>
+    <content type="text"><![CDATA[Markdown Test在Hexo写博客用的是Markdown标记语言，这篇博客用于熟悉Markdown的一些常规标记语法，包括标记标题、粗体、代码段、分节等基本语法。 test cpp123456#include&lt;iostream&gt;using namespace std;int main() &#123; cout &lt;&lt; "Hello Markdown!" &lt;&lt; endl; return 0;&#125; g++ test.cpp -o test test c12345#include&lt;stdio.h&gt;int main() &#123; printf("Hello Markdown!\n"); return 0;&#125; gcc test.c -o test]]></content>
       <categories>
         <category>Test</category>
       </categories>
