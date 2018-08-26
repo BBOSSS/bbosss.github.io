@@ -1,43 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-    
-    <entry>
-      <title>vim的基本使用</title>
-      <link href="/2018/08/25/vim%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"/>
-      <url>/2018/08/25/vim%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</url>
-      <content type="html"><![CDATA[<h2 id="vim-的基本使用"><a href="#vim-的基本使用" class="headerlink" title="vim 的基本使用"></a>vim 的基本使用</h2><p><strong>vim有三种模式</strong></p><ul><li><p>指令模式（查找和替换）</p></li><li><p>编辑模式（编辑文本）</p></li><li><p>常规模式（光标移动、复制、粘贴、删除）</p></li></ul><p>任何模式下使用ESC可返回常规模式<br><a id="more"></a></p><h4 id="打开文件、新建文件、保存文件"><a href="#打开文件、新建文件、保存文件" class="headerlink" title="打开文件、新建文件、保存文件"></a>打开文件、新建文件、保存文件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vi &lt;文件名&gt;  若文件存在则打开文件，不存在则新建并打开</span><br><span class="line">输入 <span class="string">':'</span> 进入指令模式</span><br><span class="line">输入 q (quit) 退出文件</span><br><span class="line">输入 wq (write quit) 写入修改的内容并退出</span><br><span class="line">输入 q! 强制退出不保存修改的内容</span><br></pre></td></tr></table></figure><h4 id="进入编辑模式"><a href="#进入编辑模式" class="headerlink" title="进入编辑模式"></a>进入编辑模式</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">i(在光标前开始插入文本,一般使用i)</span><br><span class="line">a在光标后开始插入文本</span><br><span class="line">o(在当前行之下新开一行，并到行首)</span><br></pre></td></tr></table></figure><h4 id="光标快速定位"><a href="#光标快速定位" class="headerlink" title="光标快速定位"></a>光标快速定位</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ngg光标移至第n行的行首（n为数字）</span><br><span class="line">1gg就跳到第一行的行首</span><br><span class="line">2gg就跳到第二行的行首</span><br><span class="line">G转至文件结尾</span><br><span class="line">注意：ngg和G是在一般模式</span><br></pre></td></tr></table></figure><h4 id="在当前行定位到某个字符"><a href="#在当前行定位到某个字符" class="headerlink" title="在当前行定位到某个字符"></a>在当前行定位到某个字符</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fx搜索当前行中下一个出现字母x的地方</span><br><span class="line">注意：fx是在一般模式</span><br></pre></td></tr></table></figure><h4 id="文本复制、粘贴、删除、撤销"><a href="#文本复制、粘贴、删除、撤销" class="headerlink" title="文本复制、粘贴、删除、撤销"></a>文本复制、粘贴、删除、撤销</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">yy复制当前行(y:yank(复制))</span><br><span class="line">nyy复制当前行及其后的n-1行(n是数字)</span><br><span class="line">使用P键来粘贴(p:paste)</span><br><span class="line"></span><br><span class="line">dd 删除光标所在行(d:delete)</span><br><span class="line">ndd 删除当前行及其后的n-1行(n是数字)</span><br><span class="line"></span><br><span class="line">按u键来撤销上一步操作</span><br><span class="line">x删除光标所在位置的字符</span><br><span class="line"></span><br><span class="line">注意：yy / nyy / dd / ndd / x / u都是在一般模式。</span><br></pre></td></tr></table></figure><h4 id="查找内容"><a href="#查找内容" class="headerlink" title="查找内容"></a>查找内容</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">输入 <span class="string">'/'</span> 进入指令模式</span><br><span class="line">输入pattern 从光标开始处向文件尾搜索pattern</span><br><span class="line">按下n或N可继续搜索下一个或上一个pattern</span><br><span class="line">n在同一个方向重复上一次搜索命令</span><br><span class="line">N在反方向重复上一次搜索命令</span><br><span class="line">n表示next</span><br><span class="line"></span><br><span class="line">注意：/pattern是从光标处开始搜索的</span><br></pre></td></tr></table></figure><h4 id="替换指定内容"><a href="#替换指定内容" class="headerlink" title="替换指定内容"></a>替换指定内容</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入 <span class="string">':'</span> 进入指令模式</span><br><span class="line">输入%s/p1/p2/g将文件中所有的p1均用p2替换</span><br><span class="line">输入%s/p1/p2/gc替换时需要确认</span><br><span class="line"></span><br><span class="line">s: substitute替换</span><br><span class="line">g: global全局</span><br><span class="line">c: confirm确认</span><br></pre></td></tr></table></figure>]]></content>
-      
+<search>
+  <entry>
+    <title><![CDATA[C/C++内存的分段和分区]]></title>
+    <url>%2F2018%2F08%2F26%2FC%2B%2B%E5%86%85%E5%AD%98%E5%88%86%E5%8C%BA%2F</url>
+    <content type="text"><![CDATA[按段划分 代码段（code segment/text segment）通常是指用来存放程序执行代码的一块内存区域。这部分区域的大小在程序运行前就已经确定，并且内存区域通常属于只读, 某些架构也允许代码段为可写，即允许修改程序。在代码段中，也有可能包含一些只读的常数变量，例如字符串常量等。 数据段（data segment）通常是指用来存放程序中已初始化的全局变量的一块内存区域。数据段属于静态内存分配，有初始化的全局变量和静态变量存放在这里。 BSS段（bss segment）通常是指用来存放程序中未初始化的全局变量的一块内存区域。BSS是英文Block Started by Symbol的简称。BSS段属于静态内存分配，有未的全局变量和静态变量存放在这里。 堆（heap）堆是用于存放进程运行中被动态分配的内存段，它的大小并不固定，可动态扩张或缩减。当进程调用malloc等函数分配内存时，新分配的内存就被动态添加到堆上（堆被扩张）；当利用free等函数释放内存时，被释放的内存从堆中被剔除（堆被缩减） 栈(stack)是用户存放程序临时创建的局部变量，也就是说我们函数括弧“{}”中定义的变量（但不包括static声明的变量，static意味着在数据段中存放变量）。除此以外，在函数被调用时，其参数也会被压入发起调用的进程栈中，并且待到调用结束后，函数的返回值也会被存放回栈中。由于栈的先进先出特点，所以栈特别方便用来保存/恢复调用现场。从这个意义上讲，我们可以把堆栈看成一个寄存、交换临时数据的内存区。 按区划分 代码区（code)代码区是只读的，该区域是用来存放程序的代码的，内存由系统管理。 常量区（constants）常量在系统一运行被创建，常量区的内存是只读的，如常量字符串就放在这个区。你可以读他们，但是不可以修改他们，内存由系统管理。 全局区（globals）定义在函数外边的全局变量和静态变量就放在这个这里，这里的变量在程序已启动就被创建，你可以自由的更改他们，所以是由系统管理的可读可写的内存。 堆（heap）是一块动态内存，由程序员自己申请自己释放的内存空间，其内存由程序管理，当程序运行时候动态分配给变量，它可以长时间存在，所以，申请一个堆内存就必须有释放的过程，同时指向堆内存的指针不能改变，否则这个堆内存永远都得不到释放，除非程序崩溃或者运行结束导致系统回收程序所在的内存，这样就很容易造成内存泄漏（是指程序运行期间，程序结束后程序所占用的内存就释放了），它是可读可写的。 栈（stack）在需要的时候由系统自动分配，在不需要的时候会由系统自动回收的存储区，内存由系统管理，函数中定义的变量存储在栈中，当调用函数的时候函数中定义的变量会被加到栈中，当函数离开的时候，被添加的变量会从栈中弹出，里面的内容可读可写。]]></content>
       <categories>
-          
-          <category> Linux </category>
-          
+        <category>C/C++</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> Linux </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>Hello Markdown</title>
-      <link href="/2018/08/25/MarkdwonTest/"/>
-      <url>/2018/08/25/MarkdwonTest/</url>
-      <content type="html"><![CDATA[<h2 id="Markdown-Test"><a href="#Markdown-Test" class="headerlink" title="Markdown Test"></a>Markdown Test</h2><p><strong>在Hexo写博客用的是Markdown标记语言，这篇博客用于熟悉Markdown的一些常规标记语法</strong></p><h3 id="test-cpp"><a href="#test-cpp" class="headerlink" title="test cpp"></a>test cpp</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello Markdown!"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>g++ test.cpp -o test<br><a id="more"></a></p><h3 id="test-c"><a href="#test-c" class="headerlink" title="test c"></a>test c</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"Hello Markdown!\n"</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>gcc test.c -o test</p>]]></content>
-      
+      <tags>
+        <tag>C/C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[vim - 基本使用]]></title>
+    <url>%2F2018%2F08%2F25%2Fvim%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[vim 的基本使用vim有三种模式 指令模式（查找和替换） 编辑模式（编辑文本） 常规模式（光标移动、复制、粘贴、删除） 任何模式下使用ESC可返回常规模式 打开文件、新建文件、保存文件12345vi &lt;文件名&gt; 若文件存在则打开文件，不存在则新建并打开输入 ':' 进入指令模式输入 q (quit) 退出文件输入 wq (write quit) 写入修改的内容并退出输入 q! 强制退出不保存修改的内容 进入编辑模式123i(在光标前开始插入文本,一般使用i)a在光标后开始插入文本o(在当前行之下新开一行，并到行首) 光标快速定位12345ngg光标移至第n行的行首（n为数字）1gg就跳到第一行的行首2gg就跳到第二行的行首G转至文件结尾注意：ngg和G是在一般模式 在当前行定位到某个字符12fx搜索当前行中下一个出现字母x的地方注意：fx是在一般模式 文本复制、粘贴、删除、撤销1234567891011yy复制当前行(y:yank(复制))nyy复制当前行及其后的n-1行(n是数字)使用P键来粘贴(p:paste)dd 删除光标所在行(d:delete)ndd 删除当前行及其后的n-1行(n是数字)按u键来撤销上一步操作x删除光标所在位置的字符注意：yy / nyy / dd / ndd / x / u都是在一般模式。 查找内容12345678输入 '/' 进入指令模式输入pattern 从光标开始处向文件尾搜索pattern按下n或N可继续搜索下一个或上一个patternn在同一个方向重复上一次搜索命令N在反方向重复上一次搜索命令n表示next注意：/pattern是从光标处开始搜索的 替换指定内容1234567输入 ':' 进入指令模式输入%s/p1/p2/g将文件中所有的p1均用p2替换输入%s/p1/p2/gc替换时需要确认s: substitute 替换g: global 全局c: confirm 确认]]></content>
       <categories>
-          
-          <category> Test </category>
-          
+        <category>Linux</category>
       </categories>
-      
-      
-    </entry>
-    
-  
-  
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello Markdown]]></title>
+    <url>%2F2018%2F08%2F25%2FMarkdwonTest%2F</url>
+    <content type="text"><![CDATA[Markdown Test在Hexo写博客用的是Markdown标记语言，这篇博客用于熟悉Markdown的一些常规标记语法 test cpp123456#include&lt;iostream&gt;using namespace std;int main() &#123; cout &lt;&lt; "Hello Markdown!" &lt;&lt; endl; return 0;&#125; g++ test.cpp -o test test c12345#include&lt;stdio.h&gt;int main() &#123; printf("Hello Markdown!\n"); return 0;&#125; gcc test.c -o test]]></content>
+      <categories>
+        <category>Test</category>
+      </categories>
+  </entry>
 </search>
