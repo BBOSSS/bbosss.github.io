@@ -379,8 +379,7 @@
       
         
           <h2 id="malloc-和-free-的原理"><a href="#malloc-和-free-的原理" class="headerlink" title="malloc 和 free 的原理"></a>malloc 和 free 的原理</h2><h3 id="基本概念和用法"><a href="#基本概念和用法" class="headerlink" title="基本概念和用法"></a>基本概念和用法</h3><ul>
-<li><strong>函数原型</strong><br><strong>void *malloc(long NumBytes)</strong>：该函数分配了NumBytes个字节，并返回了指向这块内存的指针。如果分配失败，则返回一个空指针（NULL）。<br><strong>void free(void *FirstByte)</strong>： 该函数是将之前用malloc分配的空间还给程序或者是操作系统，也就是释放了这块内存，让它重新得到自由。</li>
-</ul>
+<li><strong>函数原型</strong><br><strong>void *malloc(long NumBytes)</strong>：该函数分配了NumBytes个字节，并返回了指向这块内存的指针。如果分配失败，则返回一个空指针 NULL。<br><strong>void free(void *FirstByte)</strong>： 该函数是将之前用malloc分配的空间还给程序或者是操作系统，也就是释放了这块内存，让它重新得到自由。
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/08/26/malloc-free/#more" rel="contents">
