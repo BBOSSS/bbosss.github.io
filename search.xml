@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[vim的基本使用]]></title>
     <url>%2F2018%2F08%2F25%2Fvim%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%2F</url>
-    <content type="text"><![CDATA[vim 的基本使用vim有三种模式 指令模式（查找和替换） 常规模式（编辑文本） 编辑模式（光标移动、复制、粘贴、删除） 任何模式下使用ESC可返回常规模式 打开文件、新建文件、保存文件12345vi &lt;文件名&gt; 若文件存在则打开文件，不存在则新建并打开输入 ':' 进入指令模式输入 q (quit) 退出文件输入 wq (write quit) 写入修改的内容并退出输入 q! 强制退出不保存修改的内容 进入编辑模式123i(在光标前开始插入文本,一般使用i)a在光标后开始插入文本o(在当前行之下新开一行，并到行首) 光标快速定位12345ngg光标移至第n行的行首（n为数字）1gg就跳到第一行的行首2gg就跳到第二行的行首G转至文件结尾注意：ngg和G是在一般模式 在当前行定位到某个字符12fx搜索当前行中下一个出现字母x的地方注意：fx是在一般模式 文本复制、粘贴、删除、撤销1234567891011yy复制当前行(y:yank(复制))nyy复制当前行及其后的n-1行(n是数字)使用P键来粘贴(p:paste)dd 删除光标所在行(d:delete)ndd 删除当前行及其后的n-1行(n是数字)按u键来撤销上一步操作x删除光标所在位置的字符注意：yy / nyy / dd / ndd / x / u都是在一般模式。 查找内容12345678输入 '/' 进入指令模式输入pattern 从光标开始处向文件尾搜索pattern按下n或N可继续搜索下一个或上一个patternn在同一个方向重复上一次搜索命令N在反方向重复上一次搜索命令n表示next注意：/pattern是从光标处开始搜索的 替换指定内容1234567输入 ':' 进入指令模式输入%s/p1/p2/g将文件中所有的p1均用p2替换输入%s/p1/p2/gc替换时需要确认s: substitute 替换g: global 全局c: confirm 确认]]></content>
+    <content type="text"><![CDATA[vim 的基本使用vim有三种模式 指令模式（查找和替换） 编辑模式（编辑文本） 常规模式（光标移动、复制、粘贴、删除） 任何模式下使用ESC可返回常规模式 打开文件、新建文件、保存文件12345vi &lt;文件名&gt; 若文件存在则打开文件，不存在则新建并打开输入 ':' 进入指令模式输入 q (quit) 退出文件输入 wq (write quit) 写入修改的内容并退出输入 q! 强制退出不保存修改的内容 进入编辑模式123i(在光标前开始插入文本,一般使用i)a在光标后开始插入文本o(在当前行之下新开一行，并到行首) 光标快速定位12345ngg光标移至第n行的行首（n为数字）1gg就跳到第一行的行首2gg就跳到第二行的行首G转至文件结尾注意：ngg和G是在一般模式 在当前行定位到某个字符12fx搜索当前行中下一个出现字母x的地方注意：fx是在一般模式 文本复制、粘贴、删除、撤销1234567891011yy复制当前行(y:yank(复制))nyy复制当前行及其后的n-1行(n是数字)使用P键来粘贴(p:paste)dd 删除光标所在行(d:delete)ndd 删除当前行及其后的n-1行(n是数字)按u键来撤销上一步操作x删除光标所在位置的字符注意：yy / nyy / dd / ndd / x / u都是在一般模式。 查找内容12345678输入 '/' 进入指令模式输入pattern 从光标开始处向文件尾搜索pattern按下n或N可继续搜索下一个或上一个patternn在同一个方向重复上一次搜索命令N在反方向重复上一次搜索命令n表示next注意：/pattern是从光标处开始搜索的 替换指定内容1234567输入 ':' 进入指令模式输入%s/p1/p2/g将文件中所有的p1均用p2替换输入%s/p1/p2/gc替换时需要确认s: substitute 替换g: global 全局c: confirm 确认]]></content>
       <categories>
         <category>Linux</category>
       </categories>
@@ -14,7 +14,7 @@
   <entry>
     <title><![CDATA[Hello Markdown]]></title>
     <url>%2F2018%2F08%2F25%2FMarkdwonTest%2F</url>
-    <content type="text"><![CDATA[Markdown Testtest cpp123456#include&lt;iostream&gt;using namespace std;int main() &#123; cout &lt;&lt; "Hello Markdown!" &lt;&lt; endl; return 0;&#125; g++ test.cpp -o test test c12345#include&lt;stdio.h&gt;int main() &#123; printf("Hello Markdown!\n"); return 0;&#125; gcc test.c -o test]]></content>
+    <content type="text"><![CDATA[Markdown Test在Hexo写博客用的是Markdown标记语言，这篇博客用于熟悉Markdown的一些常规标记语法 test cpp123456#include&lt;iostream&gt;using namespace std;int main() &#123; cout &lt;&lt; "Hello Markdown!" &lt;&lt; endl; return 0;&#125; g++ test.cpp -o test test c12345#include&lt;stdio.h&gt;int main() &#123; printf("Hello Markdown!\n"); return 0;&#125; gcc test.c -o test]]></content>
       <categories>
         <category>Test</category>
       </categories>
