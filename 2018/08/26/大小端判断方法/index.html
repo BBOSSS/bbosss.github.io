@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="-谢锐彬">
 <meta property="og:description" content="大小端判断方法 小端字节序高序字节在高地址位，低序字节在低地址位大端字节序低序字节在高地址位，高序字节在低地址位">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-26T14:44:48.803Z">
+<meta property="og:updated_time" content="2018-08-27T12:50:17.373Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="大小端判断方法">
 <meta name="twitter:description" content="大小端判断方法 小端字节序高序字节在高地址位，低序字节在低地址位大端字节序低序字节在高地址位，高序字节在低地址位">
@@ -383,7 +383,7 @@
       
         <h2 id="大小端判断方法"><a href="#大小端判断方法" class="headerlink" title="大小端判断方法"></a>大小端判断方法</h2><p> <strong>小端字节序</strong><br>高序字节在高地址位，低序字节在低地址位<br><strong>大端字节序</strong><br>低序字节在高地址位，高序字节在低地址位<br><a id="more"></a></p>
 <ul>
-<li><p><strong>利用利用共用体几个不同的变量共同占用一段内存的性质输出第一个字节</strong></p>
+<li><p><strong>利用共用体几个不同的变量共同占用一段内存的性质输出第一个字节</strong></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">check</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">union</span> UN</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">char</span> c;</span><br><span class="line">        <span class="keyword">int</span> i;</span><br><span class="line">    &#125;un;</span><br><span class="line">    un.i = <span class="number">1</span>;		<span class="comment">// 置低位为 1</span></span><br><span class="line">    <span class="keyword">return</span> un.c;	<span class="comment">// 若为 1 则是小端</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>利用指针类型强制转换</strong></p>

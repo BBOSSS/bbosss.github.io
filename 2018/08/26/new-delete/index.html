@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="-谢锐彬">
 <meta property="og:description" content="new &amp;amp; delete 原理基本概念和用法malloc 和 free 是 C 的库函数，而 new 和 delete 是 C++ 的运算符，也是 C++ 的关键字。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-26T12:03:10.718Z">
+<meta property="og:updated_time" content="2018-08-27T12:51:25.139Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="new &amp; delete 原理">
 <meta name="twitter:description" content="new &amp;amp; delete 原理基本概念和用法malloc 和 free 是 C 的库函数，而 new 和 delete 是 C++ 的运算符，也是 C++ 的关键字。">
@@ -392,7 +392,7 @@
 <p>RTCCALLBACK默认是空的宏定义，所以这个函数默认情况下就是简单的调用 free 函数。<br>delete 简单数据类型默认只是调用 free 函数，delete 复杂数据类型先调用析构函数再调用 operator delete。</p>
 <p><strong>delete T 类型</strong><br>（1）调用一次该类型 T 的析构函数。<br>（2）调用operator delete，释放空间地址。<br>（3）调用free函数。</p>
 <p><strong>delete[] T 类型</strong><br>（1）取出 N（在空间的前四个字节中）。<br>（2）调用 N 次析构函数。<br>（3）调用 operator delete[] (p)。<br>（4）调用 operator delete。<br>（5）调用 free 函数。</p>
-<p><strong>new [] 会先计算出申请内存的大小，并把该大小记录在申请到的内存的前 4 个字节</strong><br><strong>delete [] 从该指针指向内存的前 4 个字节取出大小，调用 free </strong></p>
+<p><strong>new [] 会先计算出申请元素的个数N，并把N记录在申请到的内存的前 4 个字节</strong><br><strong>delete [] 从该指针指向内存的前 4 个字节取出大小N，调用 free </strong></p>
 
       
     </div>

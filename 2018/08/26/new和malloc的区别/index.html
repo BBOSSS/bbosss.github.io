@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="-谢锐彬">
 <meta property="og:description" content="new 与 malloc 的区别前两篇博客分析了 malloc 和 new 的原理，这里再简单说明一下区别。  malloc 需要使用参数具体指出申请的内存大小，以字节为单位。而 new 不用指出大小，只需指明类型。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-26T13:57:09.906Z">
+<meta property="og:updated_time" content="2018-08-27T12:50:32.688Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="new 与 malloc 的区别">
 <meta name="twitter:description" content="new 与 malloc 的区别前两篇博客分析了 malloc 和 new 的原理，这里再简单说明一下区别。  malloc 需要使用参数具体指出申请的内存大小，以字节为单位。而 new 不用指出大小，只需指明类型。">
@@ -393,7 +393,7 @@
 <li>free 只需传入由 malloc 申请的内存地址，free 需要判断 指针是否为NULL。</li>
 <li>delete 一个类的时候会调用析构函数，delete 不需要判断指针是否为NULL。</li>
 <li>delete 和 free 后都需把指针置为NULL，防止野指针。</li>
-<li>不可重复释放内存空间，但可以重复释放NULL，因为释放NULL什么也没发送。</li>
+<li>不可重复释放内存空间，但可以重复释放NULL，因为释放NULL什么也没发生。</li>
 </ul>
 
       
