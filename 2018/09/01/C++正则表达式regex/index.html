@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="C/C++," />
+  <meta name="keywords" content="C/C++,Regular," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="按段划分 代码段（code segment/text segment）通常是指用来存放程序执行代码的一块内存区域。这部分区域的大小在程序运行前就已经确定，并且内存区域通常属于只读, 某些架构也允许代码段为可写，即允许修改程序。在代码段中，也有可能包含一些只读的常数变量，例如字符串常量等。">
-<meta name="keywords" content="C&#x2F;C++">
+<meta name="description" content="C++正则表达式应用前篇博客学习了正则表达式的基本语法规则，在这里进行简单的应用例子。C++11添加了regex 头文件支持正则表达式，regex 也属于 std 名称空间，另外 boost 库也支持正则表达式。下面使用 regex 匹配整数形式和十六进制形式的 IP 地址，判断 IP 是否有效。">
+<meta name="keywords" content="C&#x2F;C++,Regular">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C&#x2F;C++内存的分段和分区">
-<meta property="og:url" content="https://github.com/BBOSSS/bbosss.github.io.git/2018/08/26/C++内存分区/index.html">
+<meta property="og:title" content="C++正则表达式regex">
+<meta property="og:url" content="https://github.com/BBOSSS/bbosss.github.io.git/2018/09/01/C++正则表达式regex/index.html">
 <meta property="og:site_name" content="-谢锐彬">
-<meta property="og:description" content="按段划分 代码段（code segment/text segment）通常是指用来存放程序执行代码的一块内存区域。这部分区域的大小在程序运行前就已经确定，并且内存区域通常属于只读, 某些架构也允许代码段为可写，即允许修改程序。在代码段中，也有可能包含一些只读的常数变量，例如字符串常量等。">
+<meta property="og:description" content="C++正则表达式应用前篇博客学习了正则表达式的基本语法规则，在这里进行简单的应用例子。C++11添加了regex 头文件支持正则表达式，regex 也属于 std 名称空间，另外 boost 库也支持正则表达式。下面使用 regex 匹配整数形式和十六进制形式的 IP 地址，判断 IP 是否有效。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-26T08:10:36.749Z">
+<meta property="og:updated_time" content="2018-09-01T14:30:56.101Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C&#x2F;C++内存的分段和分区">
-<meta name="twitter:description" content="按段划分 代码段（code segment/text segment）通常是指用来存放程序执行代码的一块内存区域。这部分区域的大小在程序运行前就已经确定，并且内存区域通常属于只读, 某些架构也允许代码段为可写，即允许修改程序。在代码段中，也有可能包含一些只读的常数变量，例如字符串常量等。">
+<meta name="twitter:title" content="C++正则表达式regex">
+<meta name="twitter:description" content="C++正则表达式应用前篇博客学习了正则表达式的基本语法规则，在这里进行简单的应用例子。C++11添加了regex 头文件支持正则表达式，regex 也属于 std 名称空间，另外 boost 库也支持正则表达式。下面使用 regex 匹配整数形式和十六进制形式的 IP 地址，判断 IP 是否有效。">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://github.com/BBOSSS/bbosss.github.io.git/2018/08/26/C++内存分区/"/>
+  <link rel="canonical" href="https://github.com/BBOSSS/bbosss.github.io.git/2018/09/01/C++正则表达式regex/"/>
 
 
 
 
 
-  <title>C/C++内存的分段和分区 | -谢锐彬</title>
+  <title>C++正则表达式regex | -谢锐彬</title>
   
 
 
@@ -287,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/BBOSSS/bbosss.github.io.git/2018/08/26/C++内存分区/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/BBOSSS/bbosss.github.io.git/2018/09/01/C++正则表达式regex/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="谢锐彬">
@@ -304,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">C/C++内存的分段和分区</h1>
+          <h1 class="post-title" itemprop="name headline">C++正则表达式regex</h1>
         
 
         <div class="post-meta">
@@ -316,8 +316,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-26T11:17:42+08:00">
-                2018-08-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-01T22:24:19+08:00">
+                2018-09-01
               </time>
             
 
@@ -381,32 +381,10 @@
       
 
       
-        <h3 id="按段划分"><a href="#按段划分" class="headerlink" title="按段划分"></a>按段划分</h3><ul>
-<li><p><strong>代码段（code segment/text segment）</strong><br>通常是指用来存放程序执行代码的一块内存区域。这部分区域的大小在程序运行前就已经确定，并且内存区域通常属于只读, 某些架构也允许代码段为可写，即允许修改程序。在代码段中，也有可能包含一些只读的常数变量，例如字符串常量等。</p>
-<a id="more"></a>
-</li>
-<li><p><strong>数据段（data segment）</strong><br>通常是指用来存放程序中已初始化的全局变量的一块内存区域。数据段属于静态内存分配，有初始化的全局变量和静态变量存放在这里。</p>
-</li>
-<li><p><strong>BSS段（bss segment）</strong><br>通常是指用来存放程序中未初始化的全局变量的一块内存区域。BSS是英文Block Started by Symbol的简称。BSS段属于静态内存分配，有未的全局变量和静态变量存放在这里。</p>
-</li>
-<li><p><strong>堆（heap）</strong><br>堆是用于存放进程运行中被动态分配的内存段，它的大小并不固定，可动态扩张或缩减。当进程调用malloc等函数分配内存时，新分配的内存就被动态添加到堆上；当利用free等函数释放内存时，被释放的内存从堆中被剔除</p>
-</li>
-<li><p><strong>栈（stack）</strong><br>是用户存放程序临时创建的局部变量，也就是说我们函数括弧“{}”中定义的变量（但不包括static声明的变量，static意味着在数据段中存放变量）。除此以外，在函数被调用时，其参数也会被压入发起调用的进程栈中，并且待到调用结束后，函数的返回值也会被存放回栈中。由于栈的先进先出特点，所以栈特别方便用来保存/恢复调用现场。</p>
-</li>
-</ul>
-<hr>
-<h3 id="按区划分"><a href="#按区划分" class="headerlink" title="按区划分"></a>按区划分</h3><ul>
-<li><p><strong>代码区（code)</strong><br>代码区是只读的，该区域是用来存放程序的代码的，内存由系统管理。</p>
-</li>
-<li><p><strong>常量区（constants）</strong><br>常量在系统一运行被创建，常量区的内存是只读的，如常量字符串就放在这个区。你可以读他们，但是不可以修改他们，内存由系统管理。</p>
-</li>
-<li><p><strong>全局区（globals）</strong><br>定义在函数外边的全局变量和静态变量就放在这个这里，这里的变量在程序已启动就被创建，你可以自由的更改他们，所以是由系统管理的可读可写的内存。</p>
-</li>
-<li><p><strong>堆（heap）</strong><br>是一块动态内存，由程序员自己申请自己释放的内存空间，<strong>其内存由程序管理</strong>，当程序运行时候动态分配给变量，它可以长时间存在，所以，<strong>申请一个堆内存就必须有释放的过程，</strong>同时指向堆内存的指针不能改变，否则这个堆内存永远都得不到释放，除非程序崩溃或者运行结束导致系统回收程序所在的内存，这样就很容易造成内存泄漏（是指程序运行期间，程序结束后程序所占用的内存就释放了），它是可读可写的。</p>
-</li>
-<li><p><strong>栈（stack）</strong><br>在需要的时候由系统自动分配，在不需要的时候会由系统自动回收的存储区，内存由系统管理，函数中定义的变量存储在栈中，当调用函数的时候函数中定义的变量会被加到栈中，当函数离开的时候，被添加的变量会从栈中弹出，里面的内容可读可写。</p>
-</li>
-</ul>
+        <h2 id="C-正则表达式应用"><a href="#C-正则表达式应用" class="headerlink" title="C++正则表达式应用"></a>C++正则表达式应用</h2><p>前篇博客学习了正则表达式的基本语法规则，在这里进行简单的应用例子。C++11添加了regex 头文件支持正则表达式，regex 也属于 std 名称空间，另外 boost 库也支持正则表达式。下面使用 regex 匹配整数形式和十六进制形式的 IP 地址，判断 IP 是否有效。<br><a id="more"></a><br><strong>代码：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;regex&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">string</span> ip_int = <span class="string">"192.168.4.245"</span>;</span><br><span class="line">	<span class="built_in">string</span> ip_hex = <span class="string">"C0.A8.04.f5"</span>;</span><br><span class="line">	<span class="built_in">string</span> expression_int = <span class="string">"((2[0-4][0-9]|25[0-5]|[01]?[0-9][0-9]?).)&#123;3&#125;(2[0-4][0-9]|25[0-5]|[01]?[0-9][0-9]?)"</span>;</span><br><span class="line">	<span class="built_in">string</span> expression_hex = <span class="string">"(([0-9A-Fa-f][0-9A-Fa-f]|[0-9A-Fa-f]?[0-9A-Fa-f]).)&#123;3&#125;([0-9A-Fa-f][0-9A-Fa-f]|[0-9A-Fa-f]?[0-9A-Fa-f])"</span>;</span><br><span class="line">	<span class="function">regex <span class="title">regex_int</span><span class="params">(expression_int)</span></span>;</span><br><span class="line">	<span class="function">regex <span class="title">regex_hex</span><span class="params">(expression_hex)</span></span>;</span><br><span class="line">	<span class="keyword">if</span>(regex_match(ip_int, regex_int))</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"Is vaild int IP address."</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"Is invaild int IP address."</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">if</span>(regex_match(ip_hex, regex_hex)) </span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"Is vaild hex IP address."</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">else</span> </span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"Is invaild hex IP address."</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>输出：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Is vaild int IP address.</span><br><span class="line">Is vaild hex IP address.</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意：regex_match 匹配整个字符串，只要全部匹配才返回 true，否在返回 false。部分匹配可使用 regex_search，用法和 regex_match 一样。另外还有 regex_replace 用于查找匹配到的字符并且替换。</strong></p>
 
       
     </div>
@@ -437,6 +415,8 @@
           
             <a href="/tags/C-C/" rel="tag"># C/C++</a>
           
+            <a href="/tags/Regular/" rel="tag"># Regular</a>
+          
         </div>
       
 
@@ -448,8 +428,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/25/vim的基本使用/" rel="next" title="vim - 基本使用">
-                <i class="fa fa-chevron-left"></i> vim - 基本使用
+              <a href="/2018/08/31/正则表达式/" rel="next" title="正则表达式基本语法规则">
+                <i class="fa fa-chevron-left"></i> 正则表达式基本语法规则
               </a>
             
           </div>
@@ -457,10 +437,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/26/malloc-free/" rel="prev" title="malloc & free 原理">
-                malloc & free 原理 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -606,7 +582,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#按段划分"><span class="nav-number">1.</span> <span class="nav-text">按段划分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按区划分"><span class="nav-number">2.</span> <span class="nav-text">按区划分</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#C-正则表达式应用"><span class="nav-number">1.</span> <span class="nav-text">C++正则表达式应用</span></a></li></ol></div>
             
 
           </div>
