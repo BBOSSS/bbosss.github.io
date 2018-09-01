@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[C++正则表达式regex]]></title>
+    <title><![CDATA[设置 socket 为非阻塞模式的三种方法]]></title>
+    <url>%2F2018%2F09%2F01%2F%E8%AE%BE%E7%BD%AE-socket-%E4%B8%BA%E9%9D%9E%E9%98%BB%E5%A1%9E%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[设置 socket 为非阻塞模式的三种方法 创建socket的时候，指定socket是异步的，在type的参数中设置SOCK_NONBLOCK标志即可。12int socket(int domain, int type, int protocol);int sockfd = socket(AF_INET, SOCK_STREAM | SOCK_NONBLOCK, 0); 使用fcntl函数 1fcntl(sockfd, F_SETFL, fcntl(sockfd, F_GETFL, 0) | O_NONBLOCK); 使用ioctl函数 1ioctl(sockfd, FIONBIO, 1); // 1:非阻塞 0:阻塞]]></content>
+      <categories>
+        <category>socket</category>
+      </categories>
+      <tags>
+        <tag>socket</tag>
+        <tag>TCP/IP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[C++正则表达式 regex]]></title>
     <url>%2F2018%2F09%2F01%2FC%2B%2B%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8Fregex%2F</url>
     <content type="text"><![CDATA[C++正则表达式应用前篇博客学习了正则表达式的基本语法规则，在这里进行简单的应用例子。C++11添加了regex 头文件支持正则表达式，regex 也属于 std 名称空间，另外 boost 库也支持正则表达式。下面使用 regex 匹配整数形式和十六进制形式的 IP 地址，判断 IP 是否有效。代码： 1234567891011121314151617181920#include &lt;iostream&gt;#include &lt;regex&gt;using namespace std;int main() &#123; string ip_int = "192.168.4.245"; string ip_hex = "C0.A8.04.f5"; string expression_int = "((2[0-4][0-9]|25[0-5]|[01]?[0-9][0-9]?).)&#123;3&#125;(2[0-4][0-9]|25[0-5]|[01]?[0-9][0-9]?)"; string expression_hex = "(([0-9A-Fa-f][0-9A-Fa-f]|[0-9A-Fa-f]?[0-9A-Fa-f]).)&#123;3&#125;([0-9A-Fa-f][0-9A-Fa-f]|[0-9A-Fa-f]?[0-9A-Fa-f])"; regex regex_int(expression_int); regex regex_hex(expression_hex); if(regex_match(ip_int, regex_int)) cout &lt;&lt; "Is vaild int IP address." &lt;&lt; endl; else cout &lt;&lt; "Is invaild int IP address." &lt;&lt; endl; if(regex_match(ip_hex, regex_hex)) cout &lt;&lt; "Is vaild hex IP address." &lt;&lt; endl; else cout &lt;&lt; "Is invaild hex IP address." &lt;&lt; endl; return 0;&#125; 输出：12Is vaild int IP address.Is vaild hex IP address. 注意：regex_match 匹配整个字符串，只要全部匹配才返回 true，否在返回 false。部分匹配可使用 regex_search，用法和 regex_match 一样。另外还有 regex_replace 用于查找匹配到的字符并且替换。]]></content>
       <categories>
