@@ -87,14 +87,14 @@
 <meta property="og:site_name" content="-谢锐彬">
 <meta property="og:description" content="造成死锁的原因①互斥　②不可剥夺　③请求和保持　④形成环路 预防死锁：资源静态分配  资源静态分配法可以预防死锁的发生，因为它使 请求和保持条件 不成立。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://pe4fbo1qb.bkt.clouddn.com/zyfpt1.png">
-<meta property="og:image" content="http://pe4fbo1qb.bkt.clouddn.com/zyfpt2.png">
-<meta property="og:image" content="http://pe4fbo1qb.bkt.clouddn.com/zyfpt3.png">
-<meta property="og:updated_time" content="2018-09-03T13:35:04.471Z">
+<meta property="og:image" content="http://pe4fbo1qb.bkt.clouddn.com/zyfp1.png">
+<meta property="og:image" content="http://pe4fbo1qb.bkt.clouddn.com/zyfp2.png">
+<meta property="og:image" content="http://pe4fbo1qb.bkt.clouddn.com/zyfp3.png">
+<meta property="og:updated_time" content="2018-09-03T13:44:24.014Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="死锁的预防、检测、避免、解除">
 <meta name="twitter:description" content="造成死锁的原因①互斥　②不可剥夺　③请求和保持　④形成环路 预防死锁：资源静态分配  资源静态分配法可以预防死锁的发生，因为它使 请求和保持条件 不成立。">
-<meta name="twitter:image" content="http://pe4fbo1qb.bkt.clouddn.com/zyfpt1.png">
+<meta name="twitter:image" content="http://pe4fbo1qb.bkt.clouddn.com/zyfp1.png">
 
 
 
@@ -387,7 +387,7 @@
       
         <h3 id="造成死锁的原因"><a href="#造成死锁的原因" class="headerlink" title="造成死锁的原因"></a><strong>造成死锁的原因</strong></h3><p><strong>①互斥　②不可剥夺　③请求和保持　④形成环路</strong></p>
 <h3 id="预防死锁：资源静态分配"><a href="#预防死锁：资源静态分配" class="headerlink" title="预防死锁：资源静态分配"></a><strong>预防死锁：资源静态分配</strong></h3><p>  资源静态分配法可以预防死锁的发生，因为它使 <strong>请求和保持条件</strong> 不成立。<br><a id="more"></a></p>
-<h3 id="检测死锁：资源分配资源简化法"><a href="#检测死锁：资源分配资源简化法" class="headerlink" title="检测死锁：资源分配资源简化法"></a><strong>检测死锁：资源分配资源简化法</strong></h3><p>  <strong>方法步骤：</strong><br>  第一步：先看系统还剩下多少资源没分配，再看有哪些进程是不阻塞的（“不阻塞”即：系统有足够的空闲资源分配给它）<br>  第二步：把不阻塞的进程的所有边都去掉，形成一个孤立的点，再把系统分配给这个进程的资源回收回来。<br>  第三步：看剩下的进程有哪些是不阻塞的，然后又把它们逐个变成孤立的点。<br>  第四步：最后，所有的资源和进程都变成孤立的点。这样的图就叫做<strong>“可完全简化”</strong>。<br>  <strong>实例：</strong><br>  <img src="http://pe4fbo1qb.bkt.clouddn.com/zyfpt1.png" alt=""><br>  ①先看R1资源，它有三个箭头是向外的，因此它一共给进程分配了3个资源，此时，R1没有空闲的资源剩余。<br>  ②再看R2资源，它有一个箭头是向外的，因此它一共给进程分配了1个资源，此时，R2还剩余一个空闲的资源没分配。<br>  ③看完资源，再来看进程，先看进程P2，它只申请一个R1资源，但此时R1资源已经用光了，所以，进程P2进入阻塞状态，因此，进程P2暂时不能化成孤立的点。<br>  ④再看进程P1，它只申请一个R2资源，此时，系统还剩余一个R2资源没分配，因此，可以满足P1的申请。这样，进程P1便得到了它的全部所需资源，所以它不会进入阻塞状态，可以一直运行，等它运行完后，我们再把它的所有的资源释放。相当于：可以把P1的所有的边去掉，变成一个孤立的点，如下图所示：<br>  <img src="http://pe4fbo1qb.bkt.clouddn.com/zyfpt2.png" alt=""><br>  ⑤进程P1运行完后，释放其所占有的资源（2个R1资源和1个R2资源），系统回收这些资源后，空闲的资源便变成2个R1资源和1个R2资源，由于进程P2一直在申请一个R1资源，所以此时，系统能满足它的申请。这样，进程P2便得到了它的全部所需资源，所以它不会进入阻塞状态，可以一直运行，等它运行完后，我们再把它的所有的资源释放。相当于：可以把P2的所有的边都去掉，化成一个孤立的点，变成下图：<br>  <img src="http://pe4fbo1qb.bkt.clouddn.com/zyfpt3.png" alt=""></p>
+<h3 id="检测死锁：资源分配资源简化法"><a href="#检测死锁：资源分配资源简化法" class="headerlink" title="检测死锁：资源分配资源简化法"></a><strong>检测死锁：资源分配资源简化法</strong></h3><p>  <strong>方法步骤：</strong><br>  第一步：先看系统还剩下多少资源没分配，再看有哪些进程是不阻塞的（“不阻塞”即：系统有足够的空闲资源分配给它）<br>  第二步：把不阻塞的进程的所有边都去掉，形成一个孤立的点，再把系统分配给这个进程的资源回收回来。<br>  第三步：看剩下的进程有哪些是不阻塞的，然后又把它们逐个变成孤立的点。<br>  第四步：最后，所有的资源和进程都变成孤立的点。这样的图就叫做<strong>“可完全简化”</strong>。<br>  <strong>实例：</strong><br>  <img src="http://pe4fbo1qb.bkt.clouddn.com/zyfp1.png" alt=""><br>  ①先看R1资源，它有三个箭头是向外的，因此它一共给进程分配了3个资源，此时，R1没有空闲的资源剩余。<br>  ②再看R2资源，它有一个箭头是向外的，因此它一共给进程分配了1个资源，此时，R2还剩余一个空闲的资源没分配。<br>  ③看完资源，再来看进程，先看进程P2，它只申请一个R1资源，但此时R1资源已经用光了，所以，进程P2进入阻塞状态，因此，进程P2暂时不能化成孤立的点。<br>  ④再看进程P1，它只申请一个R2资源，此时，系统还剩余一个R2资源没分配，因此，可以满足P1的申请。这样，进程P1便得到了它的全部所需资源，所以它不会进入阻塞状态，可以一直运行，等它运行完后，我们再把它的所有的资源释放。相当于：可以把P1的所有的边去掉，变成一个孤立的点，如下图所示：<br>  <img src="http://pe4fbo1qb.bkt.clouddn.com/zyfp2.png" alt=""><br>  ⑤进程P1运行完后，释放其所占有的资源（2个R1资源和1个R2资源），系统回收这些资源后，空闲的资源便变成2个R1资源和1个R2资源，由于进程P2一直在申请一个R1资源，所以此时，系统能满足它的申请。这样，进程P2便得到了它的全部所需资源，所以它不会进入阻塞状态，可以一直运行，等它运行完后，我们再把它的所有的资源释放。相当于：可以把P2的所有的边都去掉，化成一个孤立的点，变成下图：<br>  <img src="http://pe4fbo1qb.bkt.clouddn.com/zyfp3.png" alt=""></p>
 <h3 id="避免死锁：银行家算法"><a href="#避免死锁：银行家算法" class="headerlink" title="避免死锁：银行家算法"></a><strong>避免死锁：银行家算法</strong></h3><p>在银行中，客户申请贷款的数量是有限的，每个客户在第一次申请贷款时要声明完成该项目所需的最大资金量，在满足所有贷款要求时，客户应及时归还。银行家在客户申请的贷款数量不超过自己拥有的最大值时，都应尽量满足客户的需要。在这样的描述中，银行家就好比操作系统，资金就是资源，客户就相当于要申请资源的进程。</p>
 <ul>
 <li><p><strong>数据定义</strong></p>
